@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://cdh7rxfur7a8d"]
 
-[ext_resource type="Script" uid="uid://jnt3tllsgsrj" path="res://musicPlayer.cs" id="1_h2yge"]
-[ext_resource type="Script" uid="uid://uvvw881qvaim" path="res://improMod.cs" id="1_ig7tw"]
-[ext_resource type="AudioStream" uid="uid://cdff572key7qk" path="res://mibmineurInstru.mp3" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://cmfrnhwako2os" path="res://JazzImprovisationModule/musicPlayer.cs" id="1_h2yge"]
+[ext_resource type="Script" uid="uid://ci64k5nr65vrw" path="res://JazzImprovisationModule/improMod.cs" id="1_ig7tw"]
+[ext_resource type="AudioStream" uid="uid://b6x5gofdgklko" path="res://JazzImprovisationModule/mibmineurInstru.mp3" id="2_1bvp3"]
 
-[node name="Node" type="Node2D"]
+[node name="Node" type="Node2D" unique_id=851328771]
 
-[node name="AudioPlayer" type="Node2D" parent="."]
+[node name="AudioPlayer" type="Node2D" parent="." unique_id=476682901]
 script = ExtResource("1_h2yge")
 music = ExtResource("2_1bvp3")
 
-[node name="ImproModule" type="Node2D" parent="."]
+[node name="ImproModule" type="Node2D" parent="." unique_id=1047300340]
 script = ExtResource("1_ig7tw")

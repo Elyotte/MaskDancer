@@ -31,6 +31,7 @@ public partial class improMod : Node
         float time = (float)musicPlayer.Instance.player.GetPlaybackPosition();
         float timing = 60 / OST.BPM;
             PickNote(time, timing);
+        GD.Print(time % timing);
     }
 
     void PickNote(float time, float timing)
