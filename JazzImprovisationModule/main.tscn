@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cdh7rxfur7a8d"]
+
+[ext_resource type="Script" uid="uid://jnt3tllsgsrj" path="res://musicPlayer.cs" id="1_h2yge"]
+[ext_resource type="Script" uid="uid://uvvw881qvaim" path="res://improMod.cs" id="1_ig7tw"]
+[ext_resource type="AudioStream" uid="uid://cdff572key7qk" path="res://mibmineurInstru.mp3" id="2_1bvp3"]
+
+[node name="Node" type="Node2D"]
+
+[node name="AudioPlayer" type="Node2D" parent="."]
+script = ExtResource("1_h2yge")
+music = ExtResource("2_1bvp3")
+
+[node name="ImproModule" type="Node2D" parent="."]
+script = ExtResource("1_ig7tw")
