@@ -6,11 +6,12 @@ public partial class Couple : Path3D
 	[Export] PathFollow3D anchor;
 
     float elapsed;
-    [Export] float moveSpeed = .3f;
+    [Export] float stepDuration = .5f;
     float distanceEachStepInMeter = .4f;
     float distanceToParkour;
 
     Action<double> action;
+    Tween currentTween;
 
     float startProgress;
     float endProgress;
@@ -26,7 +27,10 @@ public partial class Couple : Path3D
         action?.Invoke(delta);
     }
 
-    void SetListenInput() { action = ListenInput; }
+    void SetListenInput() { 
+        action = ListenInput; 
+    
+    }
     void ListenInput(double delta)
     {
         if (Input.IsActionJustPressed("tap"))
@@ -37,23 +41,22 @@ public partial class Couple : Path3D
 
     void StartPlayStep()
     {
-        distanceToParkour = distanceEachStepInMeter;
+        action = null;
+
         startProgress = anchor.Progress;
         endProgress = startProgress + distanceEachStepInMeter;
-        elapsed = 0;
-        action = PlayStep;
+        
+        currentTween = GetTree().CreateTween();
+        currentTween.TweenProperty(anchor, "progress", endProgress, stepDuration).SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Circ);
+
+        currentTween.Finished += SetListenInput;
     }
-    void PlayStep(double delta){
-        float lerp = Mathf.Pow(elapsed,2) / moveSpeed;
-        anchor.Progress = Mathf.Lerp(startProgress, endProgress, lerp);
-        elapsed += (float)delta;
-        if (lerp >= 1)
-        {
-            anchor.Progress = endProgress;
-            elapsed = 0;
-            SetListenInput();
-        }
+
+    void PlayStep()
+    {
+
     }
+
 
     
 }
