@@ -4,8 +4,8 @@ using System;
 public partial class CoupleAnimator : PathFollow3D
 {
     private const float SPIN_DURATION = 0.8f;
-    [Export] Dancer dancer1;
-    [Export] Dancer dancer2;
+    [Export] DancerAnchor dancer1;
+    [Export] DancerAnchor dancer2;
     [Export] Timer endRotationTimer;
 
     float elapsed;
