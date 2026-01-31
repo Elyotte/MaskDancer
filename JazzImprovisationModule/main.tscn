@@ -2,13 +2,15 @@
 
 [ext_resource type="Script" uid="uid://cmfrnhwako2os" path="res://JazzImprovisationModule/musicPlayer.cs" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://ci64k5nr65vrw" path="res://JazzImprovisationModule/improMod.cs" id="1_ig7tw"]
-[ext_resource type="AudioStream" uid="uid://b6x5gofdgklko" path="res://JazzImprovisationModule/mibmineurInstru.mp3" id="2_1bvp3"]
+[ext_resource type="AudioStream" uid="uid://cigb3uogodu01" path="res://JazzImprovisationModule/Ost/GGJ2026v1-151.mp3" id="2_yfy4x"]
+[ext_resource type="AudioStream" uid="uid://dsgw8m2swhyny" path="res://JazzImprovisationModule/Ost/GGJ2026v2-275.mp3" id="3_pyfq1"]
 
 [node name="Node" type="Node2D" unique_id=851328771]
 
 [node name="AudioPlayer" type="Node2D" parent="." unique_id=476682901]
 script = ExtResource("1_h2yge")
-music = ExtResource("2_1bvp3")
+music1 = ExtResource("2_yfy4x")
+music2 = ExtResource("3_pyfq1")
 
 [node name="ImproModule" type="Node2D" parent="." unique_id=1047300340]
 script = ExtResource("1_ig7tw")
