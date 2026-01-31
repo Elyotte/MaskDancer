@@ -23,6 +23,11 @@ public partial class Dancer : Node3D
 
 	// _____________________public_________________________
 
+	public bool IsBackwards()
+	{
+		return backwards;
+	}
+
 	public override void _Ready()
 	{
 		turnAround.WaitTime = SPIN_DURATION / 2.0f;
@@ -35,8 +40,7 @@ public partial class Dancer : Node3D
 
 	public void Flip()
 	{
-		backwards = !backwards;
-		SetBackwards(backwards);
+		SetBackwards(!backwards);
 	}
 
 	public void Step()
@@ -44,9 +48,10 @@ public partial class Dancer : Node3D
 		sprite3D.Play();
 	}
 
-	public void Spin()
+	public void Spin(bool clockwise)
 	{
-		GetTree().CreateTween().TweenProperty(sprite3D, "rotation:y", Mathf.Pi, SPIN_DURATION).AsRelative();
+		float target = clockwise ? Mathf.Pi : -Mathf.Pi;
+		GetTree().CreateTween().TweenProperty(sprite3D, "rotation:y", target, SPIN_DURATION).AsRelative();
 		turnAround.Start();
 	}
 }
