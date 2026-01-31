@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://c0jgxomcut21p"]
+
+[ext_resource type="Script" uid="uid://hso01yvkar6l" path="res://Scripts/Button.cs" id="1_nq86d"]
+[ext_resource type="Shader" uid="uid://c0yc487ef25vm" path="res://Prefabs/Touch/Button.gdshader" id="2_wked8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_033wo"]
+shader = ExtResource("2_wked8")
+shader_parameter/t = 0.3
+
+[node name="Button" type="Control" unique_id=987700145 node_paths=PackedStringArray("textLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1087.0
+offset_bottom = -599.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nq86d")
+textLabel = NodePath("Label")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1958382397]
+material = SubResource("ShaderMaterial_033wo")
+layout_mode = 0
+offset_left = -64.0
+offset_top = -63.0
+offset_right = 61.0
+offset_bottom = 62.0
+
+[node name="Label" type="Label" parent="." unique_id=1194410804]
+layout_mode = 0
+offset_left = -21.0
+offset_top = -23.0
+offset_right = 19.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/font_size = 32
+text = "U"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="LabelDisappear" type="Timer" parent="." unique_id=2037782221]
+wait_time = 0.9
+one_shot = true
+
+[connection signal="timeout" from="LabelDisappear" to="." method="MakeLabelDisappear"]
