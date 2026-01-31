@@ -15,7 +15,7 @@ public partial class musicPlayer : Node
         Instance = this;
         player = new AudioStreamPlayer();
         player.Autoplay = true;
-        player.Stream = music1;
+        player.Stream = music2;
         AddChild(player);
         MusicDatas();
     }

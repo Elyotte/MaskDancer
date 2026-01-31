@@ -1,9 +1,11 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class improMod : Node
 {
-    AudioStreamPlayer[] improPlayer;
+    List<AudioStreamPlayer> players = new List<AudioStreamPlayer>();
+    int playersNumber = 10;
     [Export] AudioStream[] notes1;
     [Export] AudioStream[] notes2;
     float tolerance = 0.2f;
@@ -13,8 +15,7 @@ public partial class improMod : Node
     bool probablyPlaying;
     public override void _Ready()
     {
-        improPlayer = new AudioStreamPlayer[10]; 
-        for (int i = 0; i < improPlayer.Length; i++) { AddChild(improPlayer[i]); }
+        CreatePlayers();
         currentOST = new Instrumental();
         currentOST = musicPlayer.Instance.GetCurrentInstrumental();
         GD.Print(currentOST.music.GetLength());
@@ -28,6 +29,15 @@ public partial class improMod : Node
         }
     }
 
+    void CreatePlayers()
+    {
+        for (int i = 0; i < playersNumber; i++)
+        {
+            AudioStreamPlayer player = new AudioStreamPlayer();
+            AddChild(player);
+            players.Add(player);
+        }
+    }
     public bool Play()
     {
         return PlayNote(currentOST);
@@ -40,10 +50,28 @@ public partial class improMod : Node
         GD.Print(time % timing<tolerance);
 
         //Picking note algorithm
+        int nombreDeBattementsParMesure = OST.binaire ? 4 : 3;
+        float tempsPourUnBattement = 60 / OST.BPM;
+        float chordUnit = tempsPourUnBattement * nombreDeBattementsParMesure;
+        int currentChordSection = Mathf.FloorToInt(time / chordUnit) % 8; //le 8 est une constante qui devrait pas exister mais game jam
+
+        //Actually playing note
+        for (int i = 0; i < playersNumber; i++)
+        {
+            if (players[i].Playing)
+            {
+                continue;
+            }
+            else
+            {
+                GD.Print(currentChordSection);
+                players[i].Stream = notes2[currentChordSection];
+                players[i].Play();
+                break;
+            }
+        }
         return (time % timing < tolerance);
     }
-
-
 
 }
 //j'ai la flemme mais il faut un entier nombre d'accords et ici ce sera toujours 8

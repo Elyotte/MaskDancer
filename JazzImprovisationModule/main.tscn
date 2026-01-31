@@ -4,6 +4,20 @@
 [ext_resource type="Script" uid="uid://ci64k5nr65vrw" path="res://JazzImprovisationModule/improMod.cs" id="1_ig7tw"]
 [ext_resource type="AudioStream" uid="uid://cigb3uogodu01" path="res://JazzImprovisationModule/Ost/GGJ2026v1-151.mp3" id="2_yfy4x"]
 [ext_resource type="AudioStream" uid="uid://dsgw8m2swhyny" path="res://JazzImprovisationModule/Ost/GGJ2026v2-275.mp3" id="3_pyfq1"]
+[ext_resource type="AudioStream" uid="uid://c7h55h6612uyd" path="res://JazzImprovisationModule/notes/1-5.mp3" id="5_lmlqc"]
+[ext_resource type="AudioStream" uid="uid://ceuqvf6ce0k0d" path="res://JazzImprovisationModule/notes/2-6.mp3" id="6_hp1ng"]
+[ext_resource type="AudioStream" uid="uid://35bb2kup245d" path="res://JazzImprovisationModule/notes/3.mp3" id="7_mx7v0"]
+[ext_resource type="AudioStream" uid="uid://dotgrkpyt0bnr" path="res://JazzImprovisationModule/notes/4.0.mp3" id="8_j3673"]
+[ext_resource type="AudioStream" uid="uid://dr1j8onmhb1pf" path="res://JazzImprovisationModule/notes/7.mp3" id="9_4iwwv"]
+[ext_resource type="AudioStream" uid="uid://lrhyac8ukwip" path="res://JazzImprovisationModule/notes/8.mp3" id="10_pgj5b"]
+[ext_resource type="AudioStream" uid="uid://b651sfb2r370j" path="res://JazzImprovisationModule/notes/teto1.mp3" id="11_4oora"]
+[ext_resource type="AudioStream" uid="uid://8q6uporccdvh" path="res://JazzImprovisationModule/notes/teto2.mp3" id="12_id71k"]
+[ext_resource type="AudioStream" uid="uid://bjymib7wwswar" path="res://JazzImprovisationModule/notes/teto3.mp3" id="13_m4lbx"]
+[ext_resource type="AudioStream" uid="uid://cw4obwlamoh5a" path="res://JazzImprovisationModule/notes/teto4.mp3" id="14_upqcx"]
+[ext_resource type="AudioStream" uid="uid://cwncwlgso08ox" path="res://JazzImprovisationModule/notes/teto5.mp3" id="15_01eo0"]
+[ext_resource type="AudioStream" uid="uid://gs4trmbm4e8a" path="res://JazzImprovisationModule/notes/teto6.mp3" id="16_mdwej"]
+[ext_resource type="AudioStream" uid="uid://3o5v40pw5f78" path="res://JazzImprovisationModule/notes/teto7.mp3" id="17_jhfom"]
+[ext_resource type="AudioStream" uid="uid://b620uiojx0qmh" path="res://JazzImprovisationModule/notes/teto8.mp3" id="18_t7ome"]
 
 [node name="Node" type="Node2D" unique_id=851328771]
 
@@ -14,3 +28,5 @@ music2 = ExtResource("3_pyfq1")
 
 [node name="ImproModule" type="Node2D" parent="." unique_id=1047300340]
 script = ExtResource("1_ig7tw")
+notes1 = Array[AudioStream]([ExtResource("5_lmlqc"), ExtResource("6_hp1ng"), ExtResource("7_mx7v0"), ExtResource("8_j3673"), ExtResource("5_lmlqc"), ExtResource("6_hp1ng"), ExtResource("9_4iwwv"), ExtResource("10_pgj5b")])
+notes2 = Array[AudioStream]([ExtResource("11_4oora"), ExtResource("12_id71k"), ExtResource("13_m4lbx"), ExtResource("14_upqcx"), ExtResource("15_01eo0"), ExtResource("16_mdwej"), ExtResource("17_jhfom"), ExtResource("18_t7ome")])
