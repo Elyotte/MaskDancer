@@ -33,11 +33,6 @@ transform = Transform3D(1.0000001, 0, 0, 0, 0.8660254, 0.50000006, 0, -0.5, 0.86
 [node name="Dancer2" parent="PathFollow3D" unique_id=166886143 instance=ExtResource("2_8g8pn")]
 transform = Transform3D(1.0000002, 0, 0, 0, 0.8660255, 0.50000006, 0, -0.5, 0.8660257, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1541236243]
-transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 2.4031363, 2.54)
-projection = 1
-size = 2.402
-
 [node name="EndSpin" type="Timer" parent="." unique_id=289709249]
 one_shot = true
 
