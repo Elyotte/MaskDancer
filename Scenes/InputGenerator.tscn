@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://wecfm1oademd"]
+
+[ext_resource type="Texture2D" uid="uid://dw1fubvv43bkf" path="res://icon.svg" id="1_7uanw"]
+[ext_resource type="PackedScene" uid="uid://bjqdfp57ua85h" path="res://Prefabs/Couple.tscn" id="2_3clme"]
+[ext_resource type="PackedScene" uid="uid://ks7f5obcyide" path="res://Prefabs/Dancer.tscn" id="3_3clme"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3clme"]
+radius = 0.92
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3clme"]
+albedo_color = Color(0.08068781, 0.06465631, 0.0035635196, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_y4wai"]
+
+[node name="InputGenerator" type="Node3D" unique_id=1069710850]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=108344366]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 2, 3)
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=618942320]
+transform = Transform3D(6.71, 0, 0, 0, -2.5702295e-07, 1.0000001, 0, -5.8799996, -4.3711392e-08, 0, 0, 0)
+visible = false
+modulate = Color(0.14767182, 0.14767179, 0.14767179, 1)
+texture = ExtResource("1_7uanw")
+
+[node name="Couple" parent="." unique_id=2008154502 instance=ExtResource("2_3clme")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.27808753, 1.0251238)
+moveSpeed = 0.5
+
+[node name="PathFollow3D" parent="Couple" index="0" unique_id=2142276862]
+transform = Transform3D(0.999991, 0, 0, 0, 0.99999994, 0, 0, 0, 0.999991, -0.13223594, 0, -0.8699601)
+progress = 0.9
+
+[node name="Dancer1" parent="Couple/PathFollow3D" index="0" unique_id=412163804]
+transform = Transform3D(1.0000001, 0, 0, 0, 0.8660256, 0.50000006, 0, -0.5, 0.86602575, 0, -0.08213076, 0)
+
+[node name="Dancer2" parent="Couple/PathFollow3D" index="1" unique_id=166886143]
+transform = Transform3D(1.0000002, 0, 0, 0, 0.86602575, 0.50000006, 0, -0.5, 0.8660259, 0, -0.08213076, 0)
+
+[node name="Couple2" parent="." unique_id=110960892 instance=ExtResource("2_3clme")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46913195, 0.07130185, 2.1827269)
+moveSpeed = 0.5
+
+[node name="Dancer1" parent="Couple2/PathFollow3D" parent_id_path=PackedInt32Array(110960892, 2142276862) index="0" unique_id=412163804]
+transform = Transform3D(1.0000001, 0, 0, 0, 0.8660257, 0.50000006, 0, -0.5, 0.8660258, 0, 0.11961981, 0)
+
+[node name="Dancer2" parent="Couple2/PathFollow3D" parent_id_path=PackedInt32Array(110960892, 2142276862) index="1" unique_id=166886143]
+transform = Transform3D(1.0000002, 0, 0, 0, 0.8660258, 0.50000006, 0, -0.5, 0.866026, 0, 0.11961981, 0)
+
+[node name="Couple3" parent="." unique_id=460910057 instance=ExtResource("2_3clme")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5251868, 0.15267122, -0.19385648)
+moveSpeed = 0.5
+
+[node name="PathFollow3D" parent="Couple3" index="0" unique_id=2142276862]
+transform = Transform3D(0.999991, 0, 0, 0, 0.99999994, 0, 0, 0, 0.999991, 0.6147763, 0, 0.15715669)
+progress = 3.59
+
+[node name="Dancer1" parent="Couple3/PathFollow3D" index="0" unique_id=412163804]
+transform = Transform3D(1.0000001, 0, 0, 0, 0.8660256, 0.50000006, 0, -0.5, 0.86602575, 0, 0.044280007, 0)
+
+[node name="Dancer2" parent="Couple3/PathFollow3D" index="1" unique_id=166886143]
+transform = Transform3D(1.0000002, 0, 0, 0, 0.86602575, 0.50000006, 0, -0.5, 0.8660259, 0, 0.044280007, 0)
+
+[node name="Dancer" parent="." unique_id=800080544 instance=ExtResource("3_3clme")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24724817, 0)
+
+[node name="Area3D2" type="Area3D" parent="Dancer" unique_id=1615262693]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dancer/Area3D2" unique_id=1485923486]
+shape = SubResource("SphereShape3D_3clme")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=55941266]
+transform = Transform3D(2.8285527, 0, 0, 0, 1, 0, 0, 0, 4.8005342, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_3clme")
+mesh = SubResource("PlaneMesh_y4wai")
+
+[editable path="Couple"]
+[editable path="Couple2"]
+[editable path="Couple3"]

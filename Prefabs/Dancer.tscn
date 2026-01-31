@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://c581tee85urtb"]
+[gd_scene format=3 uid="uid://ks7f5obcyide"]
 
-[ext_resource type="Script" uid="uid://bj8kx7kisrex3" path="res://Scripts/Dancer.cs" id="1_i58a0"]
-[ext_resource type="Texture2D" uid="uid://dcbamgh4t6mvb" path="res://placeholder_dance.png" id="2_k5113"]
+[ext_resource type="Script" uid="uid://bggcuwowerxil" path="res://Scripts/Dancer.cs" id="1_i58a0"]
+[ext_resource type="Texture2D" uid="uid://cn1eg1ivviuaq" path="res://placeholder_dance.png" id="2_k5113"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ta3js"]
 atlas = ExtResource("2_k5113")
@@ -44,13 +44,16 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_i58a0"]
+radius = 0.26118335
+
 [node name="Dancer" type="Node3D" unique_id=412163804 node_paths=PackedStringArray("sprite3D", "turnAround")]
 script = ExtResource("1_i58a0")
 sprite3D = NodePath("Anim")
 turnAround = NodePath("TurnAround")
 
 [node name="Anim" type="AnimatedSprite3D" parent="." unique_id=921025191]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0.30733287, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0.055401683, 0)
 rotation_edit_mode = 1
 sprite_frames = SubResource("SpriteFrames_kexfi")
 animation = &"front"
@@ -58,5 +61,10 @@ speed_scale = 0.3
 
 [node name="TurnAround" type="Timer" parent="." unique_id=1677718165]
 one_shot = true
+
+[node name="Area3D" type="Area3D" parent="." unique_id=2134587405]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=51571267]
+shape = SubResource("SphereShape3D_i58a0")
 
 [connection signal="timeout" from="TurnAround" to="." method="Flip"]
