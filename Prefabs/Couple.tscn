@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bjqdfp57ua85h"]
+
+[ext_resource type="Script" uid="uid://cpg1j2wl0a1as" path="res://Scripts/Couple.cs" id="1_swnvi"]
+[ext_resource type="Texture2D" uid="uid://dw1fubvv43bkf" path="res://icon.svg" id="2_8g8pn"]
+
+[sub_resource type="Curve3D" id="Curve3D_hcljg"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.28, 0, 0, 0, 0, 0, 0, 0, 0, -0.15, 0, -0.865, 2.365, 0, -0.41, 0.005, 0, -0.02, 0.5544915, 0, 0.17200422, 0.15, 0, 0.325, 0, 0, 0.355, -0.098142385, 0, 0.5194653),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[node name="Path3D" type="Path3D" unique_id=110960892 node_paths=PackedStringArray("anchor")]
+curve = SubResource("Curve3D_hcljg")
+script = ExtResource("1_swnvi")
+anchor = NodePath("PathFollow3D")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="." unique_id=2142276862]
+transform = Transform3D(-0.28068253, 0, -0.9597913, 0, 0.99999994, 0, 0.9597913, 0, -0.28068253, 0.54350793, 0, -0.6915677)
+progress = 1.59
+
+[node name="Sprite3D" type="Sprite3D" parent="PathFollow3D" unique_id=1868972899]
+texture = ExtResource("2_8g8pn")

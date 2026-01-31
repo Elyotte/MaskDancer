@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b1ey8ktv55h8a"]
+
+[ext_resource type="Texture2D" uid="uid://dw1fubvv43bkf" path="res://icon.svg" id="1_r150o"]
+[ext_resource type="PackedScene" uid="uid://bjqdfp57ua85h" path="res://Prefabs/Couple.tscn" id="2_idj7w"]
+
+[node name="Main" type="Node3D" unique_id=1409599210]
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=618942320]
+transform = Transform3D(6.71, 0, 0, 0, -2.5702295e-07, 1.0000001, 0, -5.8799996, -4.3711392e-08, 0, 0, 0)
+modulate = Color(0.14767182, 0.14767179, 0.14767179, 1)
+texture = ExtResource("1_r150o")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=108344366]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 2, 3)
+
+[node name="Couple" parent="." unique_id=2008154502 instance=ExtResource("2_idj7w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.0752656, 1.0251238)
+
+[node name="Sprite3D" type="Sprite3D" parent="Couple/Path3D/PathFollow3D" parent_id_path=PackedInt32Array(2008154502, 2016423962) index="0" unique_id=2095989796]
+billboard = 2
+texture = ExtResource("1_r150o")
+
+[editable path="Couple"]

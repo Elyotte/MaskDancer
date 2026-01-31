@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MaskDancer"
-run/main_scene="uid://cdh7rxfur7a8d"
+run/main_scene="uid://b1ey8ktv55h8a"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
