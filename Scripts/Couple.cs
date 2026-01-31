@@ -8,6 +8,7 @@ public partial class Couple : Path3D
     [Export] Dancer dancer1;
     [Export] Dancer dancer2;
 
+    float stepDuration = 0.7f;
     float elapsed;
 	private Vector3 center => (dancer1.Position + dancer2.Position) * 0.5f;
     private const float dancerDist = 0.13f;
@@ -54,14 +55,11 @@ public partial class Couple : Path3D
     }
     void ListenInput(double delta)
     {
-        if (Input.IsActionJustPressed("tap"))
-        {
-            StartPlayStep();
-        }
 
         if (Input.IsActionJustPressed("spin"))
         {
             Spin();
+            StartPlayStep();
         }
     }
 
