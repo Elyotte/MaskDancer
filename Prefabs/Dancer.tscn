@@ -50,13 +50,11 @@ sprite3D = NodePath("Anim")
 turnAround = NodePath("TurnAround")
 
 [node name="Anim" type="AnimatedSprite3D" parent="." unique_id=921025191]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30733287, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0.30733287, 0)
+rotation_edit_mode = 1
 sprite_frames = SubResource("SpriteFrames_kexfi")
 animation = &"front"
 speed_scale = 0.3
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=926924569]
-transform = Transform3D(0.9999766, 6.9847556e-10, 0.0068415995, -0.0022734147, 0.94317627, 0.332285, -0.006452834, -0.33229277, 0.9431542, -0.05732751, 0.9851767, 1.5483181)
 
 [node name="TurnAround" type="Timer" parent="." unique_id=1677718165]
 one_shot = true
