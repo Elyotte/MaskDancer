@@ -17,14 +17,13 @@ public partial class CoupleManager : Node
 
 	List<Couple> coupleList = new List<Couple>();
 
-
 	private CoupleManager() {
 		if (instance == null) instance = this;
 	}
 
 	public override void _Process(double delta)
 	{
-
+		base._Process(delta);
 	}
 
 	public List<Couple> ClosestCouples(Couple fromWho, int max = 4)
@@ -33,7 +32,7 @@ public partial class CoupleManager : Node
 		List<Couple> ans = new List<Couple>();
 		foreach (Couple who in coupleList)
 		{
-			if((who.GlobalPosition - fromWho.GlobalPosition).Length() <= radius)
+			if((who.GlobalPosition - fromWho.GlobalPosition).Length() <= radius && who != fromWho)
 				ans.Add(who);
 		}
 		// ans.sort() ? Pas la peine en vrai on aura jamais + de 3 couples a la fois
@@ -45,7 +44,7 @@ public partial class CoupleManager : Node
 		GetInstance().coupleList.Add(couple);
 	}
 
-	public void RemoveCouple(Couple couple)
+	public static void RemoveCouple(Couple couple)
 	{
 		GetInstance().coupleList.Remove(couple);
 	}
