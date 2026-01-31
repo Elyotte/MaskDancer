@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bjqdfp57ua85h"]
 
 [ext_resource type="Script" uid="uid://cpg1j2wl0a1as" path="res://Scripts/Couple.cs" id="1_swnvi"]
-[ext_resource type="Texture2D" uid="uid://dw1fubvv43bkf" path="res://icon.svg" id="2_8g8pn"]
+[ext_resource type="PackedScene" uid="uid://c581tee85urtb" path="res://Prefabs/Dancer.tscn" id="2_8g8pn"]
 
 [sub_resource type="Curve3D" id="Curve3D_hcljg"]
 closed = true
@@ -11,14 +11,26 @@ _data = {
 }
 point_count = 4
 
-[node name="Path3D" type="Path3D" unique_id=110960892 node_paths=PackedStringArray("anchor")]
+[node name="Path3D" type="Path3D" unique_id=110960892 node_paths=PackedStringArray("anchor", "dancer1", "dancer2")]
 curve = SubResource("Curve3D_hcljg")
 script = ExtResource("1_swnvi")
 anchor = NodePath("PathFollow3D")
+dancer1 = NodePath("PathFollow3D/Dancer1")
+dancer2 = NodePath("PathFollow3D/Dancer2")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="." unique_id=2142276862]
-transform = Transform3D(-0.28068253, 0, -0.9597913, 0, 0.99999994, 0, 0.9597913, 0, -0.28068253, 0.54350793, 0, -0.6915677)
+transform = Transform3D(0.999991, 0, 0, 0, 0.99999994, 0, 0, 0, 0.999991, 0.54350793, 0, -0.6915677)
 progress = 1.59
+rotation_mode = 0
+tilt_enabled = false
 
-[node name="Sprite3D" type="Sprite3D" parent="PathFollow3D" unique_id=1868972899]
-texture = ExtResource("2_8g8pn")
+[node name="Dancer1" parent="PathFollow3D" unique_id=412163804 instance=ExtResource("2_8g8pn")]
+transform = Transform3D(1.0000001, 0, 0, 0, 0.8660254, 0.50000006, 0, -0.5, 0.8660255, 0, 0, 0)
+
+[node name="Dancer2" parent="PathFollow3D" unique_id=166886143 instance=ExtResource("2_8g8pn")]
+transform = Transform3D(1.0000002, 0, 0, 0, 0.8660255, 0.50000006, 0, -0.5, 0.8660257, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1541236243]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 2.4031363, 2.54)
+projection = 1
+size = 2.402
