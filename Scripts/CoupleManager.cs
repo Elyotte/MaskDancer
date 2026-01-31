@@ -17,7 +17,7 @@ public partial class CoupleManager : Node
 
 	List<Couple> coupleList = new List<Couple>();
 
-	private CoupleManager() {
+	protected CoupleManager() {
 		if (instance == null) instance = this;
 	}
 
@@ -39,6 +39,8 @@ public partial class CoupleManager : Node
 		return ans.GetRange(0, Mathf.Min(max, ans.Count));
 	}
 
+
+
 	public static void AddCouple(Couple couple)
 	{
 		GetInstance().coupleList.Add(couple);
@@ -49,4 +51,12 @@ public partial class CoupleManager : Node
 		GetInstance().coupleList.Remove(couple);
 	}
 
+    public override void _ExitTree()
+    {
+		if (instance == this)
+		{
+			instance = null;
+		}
+        base._ExitTree();
+    }
 }
