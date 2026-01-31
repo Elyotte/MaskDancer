@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bjqdfp57ua85h"]
 
 [ext_resource type="Script" uid="uid://cpg1j2wl0a1as" path="res://Scripts/Couple.cs" id="1_swnvi"]
+[ext_resource type="Script" uid="uid://v30ctkd5vy2p" path="res://Scripts/CoupleAnimator.cs" id="2_3kus2"]
 [ext_resource type="PackedScene" uid="uid://c581tee85urtb" path="res://Prefabs/Dancer.tscn" id="2_8g8pn"]
 
 [sub_resource type="Curve3D" id="Curve3D_hcljg"]
@@ -11,19 +12,20 @@ _data = {
 }
 point_count = 4
 
-[node name="Path3D" type="Path3D" unique_id=110960892 node_paths=PackedStringArray("anchor", "dancer1", "dancer2", "endRotationTimer")]
+[node name="Path3D" type="Path3D" unique_id=110960892 node_paths=PackedStringArray("anchor")]
 curve = SubResource("Curve3D_hcljg")
 script = ExtResource("1_swnvi")
 anchor = NodePath("PathFollow3D")
-dancer1 = NodePath("PathFollow3D/Dancer1")
-dancer2 = NodePath("PathFollow3D/Dancer2")
-endRotationTimer = NodePath("EndSpin")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="." unique_id=2142276862]
+[node name="PathFollow3D" type="PathFollow3D" parent="." unique_id=2142276862 node_paths=PackedStringArray("dancer1", "dancer2", "endRotationTimer")]
 transform = Transform3D(0.999991, 0, 0, 0, 0.99999994, 0, 0, 0, 0.999991, 0.54350793, 0, -0.6915677)
 progress = 1.59
 rotation_mode = 0
 tilt_enabled = false
+script = ExtResource("2_3kus2")
+dancer1 = NodePath("Dancer1")
+dancer2 = NodePath("Dancer2")
+endRotationTimer = NodePath("../EndSpin")
 
 [node name="Dancer1" parent="PathFollow3D" unique_id=412163804 instance=ExtResource("2_8g8pn")]
 transform = Transform3D(1.0000001, 0, 0, 0, 0.8660254, 0.50000006, 0, -0.5, 0.8660255, 0, 0, 0)
@@ -39,4 +41,4 @@ size = 2.402
 [node name="EndSpin" type="Timer" parent="." unique_id=289709249]
 one_shot = true
 
-[connection signal="timeout" from="EndSpin" to="." method="EndRotation"]
+[connection signal="timeout" from="EndSpin" to="PathFollow3D" method="EndRotation"]

@@ -1,7 +1,17 @@
 [gd_scene format=3 uid="uid://b1ey8ktv55h8a"]
 
 [ext_resource type="Texture2D" uid="uid://dw1fubvv43bkf" path="res://icon.svg" id="1_r150o"]
-[ext_resource type="PackedScene" uid="uid://bjqdfp57ua85h" path="res://Prefabs/Couple.tscn" id="2_idj7w"]
+[ext_resource type="Script" uid="uid://cpg1j2wl0a1as" path="res://Scripts/Couple.cs" id="2_rgh2o"]
+[ext_resource type="Script" uid="uid://v30ctkd5vy2p" path="res://Scripts/CoupleAnimator.cs" id="3_kln2b"]
+[ext_resource type="PackedScene" uid="uid://c581tee85urtb" path="res://Prefabs/Dancer.tscn" id="4_pbw6q"]
+
+[sub_resource type="Curve3D" id="Curve3D_hcljg"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.28, 0, 0, 0, 0, 0, 0, 0, 0, -0.15, 0, -0.865, 2.365, 0, -0.41, 0.005, 0, -0.02, 0.5544915, 0, 0.17200422, 0.15, 0, 0.325, 0, 0, 0.355, -0.098142385, 0, 0.5194653),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
 
 [node name="Main" type="Node3D" unique_id=1409599210]
 
@@ -13,11 +23,34 @@ texture = ExtResource("1_r150o")
 [node name="Camera3D" type="Camera3D" parent="." unique_id=108344366]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 2, 3)
 
-[node name="Couple" parent="." unique_id=2008154502 instance=ExtResource("2_idj7w")]
+[node name="Couple" type="Path3D" parent="." unique_id=2008154502 node_paths=PackedStringArray("anchor")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.0752656, 1.0251238)
+curve = SubResource("Curve3D_hcljg")
+script = ExtResource("2_rgh2o")
+anchor = NodePath("PathFollow3D")
 
-[node name="Sprite3D" type="Sprite3D" parent="Couple/Path3D/PathFollow3D" parent_id_path=PackedInt32Array(2008154502, 2016423962) index="0" unique_id=2095989796]
-billboard = 2
-texture = ExtResource("1_r150o")
+[node name="PathFollow3D" type="PathFollow3D" parent="Couple" unique_id=2142276862 node_paths=PackedStringArray("dancer1", "dancer2", "endRotationTimer")]
+transform = Transform3D(0.999991, 0, 0, 0, 0.99999994, 0, 0, 0, 0.999991, 0.54350793, 0, -0.6915677)
+progress = 1.59
+rotation_mode = 0
+tilt_enabled = false
+script = ExtResource("3_kln2b")
+dancer1 = NodePath("Dancer1")
+dancer2 = NodePath("Dancer2")
+endRotationTimer = NodePath("../EndSpin")
 
-[editable path="Couple"]
+[node name="Dancer1" parent="Couple/PathFollow3D" unique_id=412163804 instance=ExtResource("4_pbw6q")]
+transform = Transform3D(1.0000001, 0, 0, 0, 0.8660254, 0.50000006, 0, -0.5, 0.8660255, 0, 0, 0)
+
+[node name="Dancer2" parent="Couple/PathFollow3D" unique_id=166886143 instance=ExtResource("4_pbw6q")]
+transform = Transform3D(1.0000002, 0, 0, 0, 0.8660255, 0.50000006, 0, -0.5, 0.8660257, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Couple" unique_id=1541236243]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 2.4031363, 2.54)
+projection = 1
+size = 2.402
+
+[node name="EndSpin" type="Timer" parent="Couple" unique_id=289709249]
+one_shot = true
+
+[connection signal="timeout" from="Couple/EndSpin" to="Couple" method="EndRotation"]
