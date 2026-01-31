@@ -22,6 +22,7 @@ public partial class Couple : Path3D
 
     public override void _Ready()
     {
+        CoupleManager.AddCouple(this);
         base._Ready();
         action = ListenInput;
     }
@@ -68,5 +69,9 @@ public partial class Couple : Path3D
         }
     }
 
-
+    public override void _ExitTree()
+    {
+        CoupleManager.RemoveCouple(this);
+        base._ExitTree();
+    }
 }
