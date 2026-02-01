@@ -6,11 +6,13 @@ public partial class Couple : Path3D
 	[Export] PathFollow3D anchor;
 	[Export] float rythm = 1.2f;
 	[Export] Label3D textLabel;
+	[Export] float moveSpeed = .3f;
+
+    private string currentLetter = "";
 
 	float stepDuration = 0.7f;
 	float elapsed;
 	private const float dancerDist = 0.13f;
-	[Export] float moveSpeed = .3f;
 	float distanceEachStepInMeter = .4f;
 	float distanceToParkour;
 
@@ -36,14 +38,20 @@ public partial class Couple : Path3D
 		action?.Invoke(delta);
 	}
 
+    public string GetLetter()
+    {
+        return currentLetter;
+    }
+
 	private void SetTimingProgression(float t)
-	{
-		var shaderMaterial = (ShaderMaterial)GetNode<Sprite3D>("Sprite3D").MaterialOverride;
-		shaderMaterial.SetShaderParameter("t", t);
-	}
+    {
+        var shaderMaterial = (ShaderMaterial)GetNode<Sprite3D>("Sprite3D").MaterialOverride;
+        shaderMaterial.SetShaderParameter("t", t);
+    }
 
 	public void Appear(string letter)
 	{
+        currentLetter = letter;
 		textLabel.Text = letter;
 		Visible = true;
 		SetTimingProgression(0.0f);
@@ -60,20 +68,20 @@ public partial class Couple : Path3D
 		GetTree().CreateTween().TweenProperty(textLabel, "outline_modulate:a", 0.0f, 0.15f * rythm);
 	}
 
-	void SetListenInput() { 
+	void SetListenInput()
+    { 
 		action = ListenInput; 
-	
 	}
-	void ListenInput(double delta)
-	{
-		if (Input.IsActionJustPressed("spin"))
-		{
-			StartPlayStep();
-			Appear("Y");
-		}
-	}
+    void ListenInput(double delta)
+    {
+        // non dcp
+		// if (Input.IsActionJustPressed("spin"))
+        // {
+        // 	StartPlayStep();
+        // }
+    }
 
-	void StartPlayStep()
+	public void StartPlayStep()
 	{
 		action = null;
 
@@ -98,9 +106,14 @@ public partial class Couple : Path3D
 		}
 	}
 
+    public void SwapWith(Couple other)
+    {
+        GD.Print("swap !");
+    }
+
 	public override void _ExitTree()
-	{
-		CoupleManager.RemoveCouple(this);
-		base._ExitTree();
-	}
+    {
+        CoupleManager.RemoveCouple(this);
+        base._ExitTree();
+    }
 }
