@@ -6,7 +6,7 @@ public partial class DancerAnchor : Node3D
 	// _____________________private_________________________
 
 	private const float SPIN_DURATION = 0.8f;
-	[Export] private Dancer dancer;
+	[Export] public Dancer dancer;
 	[Export] private Timer turnAround;
 
 	private void UpdateAnim()
