@@ -53,7 +53,6 @@ public partial class CoupleAnimator : PathFollow3D
 	{
 		SetRotation(1.0f);
 		rotationOffset += 1.0f;
-		GD.Print(rotationOffset);
 	}
 
 	private void Spin()
