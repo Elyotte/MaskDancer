@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://cpg1j2wl0a1as" path="res://Scripts/Couple.cs" id="1_swnvi"]
 [ext_resource type="Script" uid="uid://v30ctkd5vy2p" path="res://Scripts/CoupleAnimator.cs" id="2_3kus2"]
 [ext_resource type="PackedScene" uid="uid://c581tee85urtb" path="res://Prefabs/Dancer.tscn" id="2_8g8pn"]
+[ext_resource type="Texture2D" uid="uid://dw1fubvv43bkf" path="res://icon.svg" id="4_c50qg"]
+[ext_resource type="Shader" uid="uid://c0yc487ef25vm" path="res://Prefabs/Touch/Button.gdshader" id="4_m1br7"]
 
 [sub_resource type="Curve3D" id="Curve3D_hcljg"]
 closed = true
@@ -12,10 +14,16 @@ _data = {
 }
 point_count = 4
 
-[node name="Path3D" type="Path3D" unique_id=110960892 node_paths=PackedStringArray("anchor")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jtsmt"]
+render_priority = 0
+shader = ExtResource("4_m1br7")
+shader_parameter/t = 0.0
+
+[node name="Path3D" type="Path3D" unique_id=110960892 node_paths=PackedStringArray("anchor", "textLabel")]
 curve = SubResource("Curve3D_hcljg")
 script = ExtResource("1_swnvi")
 anchor = NodePath("PathFollow3D")
+textLabel = NodePath("Label3D")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="." unique_id=2142276862 node_paths=PackedStringArray("dancer1", "dancer2", "endRotationTimer")]
 transform = Transform3D(0.999991, 0, 0, 0, 0.99999994, 0, 0, 0, 0.999991, 0.54350793, 0, -0.6915677)
@@ -36,4 +44,21 @@ transform = Transform3D(1.0000002, 0, 0, 0, 0.8660255, 0.50000006, 0, -0.5, 0.86
 [node name="EndSpin" type="Timer" parent="." unique_id=289709249]
 one_shot = true
 
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=837030618]
+transform = Transform3D(1, 0, 0, 0, 0.86659205, 0.49901724, 0, -0.49901724, 0.86659205, 0.52541995, 0.643027, -1.5839987)
+material_override = SubResource("ShaderMaterial_jtsmt")
+texture = ExtResource("4_c50qg")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=980395443]
+transform = Transform3D(1, 0, 0, 0, 0.8709052, 0.49145103, 0, -0.49145103, 0.8709052, 0.53931653, 0.67999107, -1.5729754)
+render_priority = 2
+outline_render_priority = 1
+modulate = Color(1, 1, 1, 0)
+outline_modulate = Color(0, 0, 0, 0)
+text = "W"
+
+[node name="LabelDisappear" type="Timer" parent="." unique_id=1993716103]
+one_shot = true
+
 [connection signal="timeout" from="EndSpin" to="PathFollow3D" method="EndRotation"]
+[connection signal="timeout" from="LabelDisappear" to="." method="MakeLabelDisappear"]

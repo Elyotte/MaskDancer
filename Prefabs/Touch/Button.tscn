@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://c0jgxomcut21p"]
 
-[ext_resource type="Script" uid="uid://hso01yvkar6l" path="res://Scripts/Button.cs" id="1_nq86d"]
+[ext_resource type="Script" uid="uid://dohy8mo5t2px7" path="res://Scripts/Button.cs" id="1_nq86d"]
 [ext_resource type="Shader" uid="uid://c0yc487ef25vm" path="res://Prefabs/Touch/Button.gdshader" id="2_wked8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_033wo"]
+render_priority = 0
 shader = ExtResource("2_wked8")
 shader_parameter/t = 0.3
 
