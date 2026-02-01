@@ -4,6 +4,7 @@ using System;
 public partial class musicPlayer : Node
 {
     public static musicPlayer Instance {  get; private set; }
+    [Export] public int music_played = 1;
     [Export] public AudioStream music1;
     [Export] public AudioStream music2;
     public AudioStreamPlayer player;
@@ -15,7 +16,7 @@ public partial class musicPlayer : Node
         Instance = this;
         player = new AudioStreamPlayer();
         player.Autoplay = true;
-        player.Stream = music2;
+        player.Stream = music_played ==  1 ? music1 : music2;
         AddChild(player);
         MusicDatas();
     }
