@@ -21,6 +21,12 @@ public partial class musicPlayer : Node
         MusicDatas();
     }
 
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionJustPressed("swapmusic")) { player.Stream = music_played == 1 ? music2 : music1;
+            music_played = music_played == 1 ? 2 : 1; player.Play();
+        }
+    }
     public Instrumental GetCurrentInstrumental()
     {
         if (player.Stream == music1) { return ost1; }
