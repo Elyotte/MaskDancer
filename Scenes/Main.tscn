@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cl3cwxms27cei" path="res://Scripts/CoupleManager.cs" id="1_idj7w"]
 [ext_resource type="PackedScene" uid="uid://bjqdfp57ua85h" path="res://Prefabs/Couple.tscn" id="2_idj7w"]
+[ext_resource type="PackedScene" uid="uid://cdh7rxfur7a8d" path="res://JazzImprovisationModule/main.tscn" id="3_kln2b"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_r150o"]
 
@@ -38,6 +39,8 @@ wait_time = 2.0
 [node name="HalfBeat" type="Timer" parent="." unique_id=1254622907]
 one_shot = true
 autostart = true
+
+[node name="Jazz" parent="." unique_id=851328771 instance=ExtResource("3_kln2b")]
 
 [connection signal="timeout" from="OffBeat" to="." method="OnOffBeat"]
 [connection signal="timeout" from="Beat" to="." method="OnBeat"]

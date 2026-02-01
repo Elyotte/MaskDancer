@@ -32,6 +32,12 @@ public partial class CoupleManager : Node
 		base._Ready();
 		inputLetters = new List<string> { "H", "J", "K", "L" };
 		nbInputs = Mathf.Min(maxNbClosestCouples, inputLetters.Count);
+		improMod teddyMonGoat = GetNode<improMod>("Jazz/ImproModule");
+		float tpub = 60 / teddyMonGoat.currentOST.BPM * teddyMonGoat.signature;
+		GD.Print("tpub = ", tpub);
+		GetNode<Timer>("Beat").WaitTime = tpub;
+		GetNode<Timer>("OffBeat").WaitTime = tpub;
+		GetNode<Timer>("HalfBeat").WaitTime = tpub / 2.0f;
     }
 
 	int NumberOfLetter(string letter)
@@ -61,7 +67,7 @@ public partial class CoupleManager : Node
 		{
 			if (Input.IsActionJustPressed("dance" + NumberOfLetter(inputLetters[i])))
 			{
-				bool goodTiming = true;
+				bool goodTiming = GetNode<improMod>("Jazz/ImproModule").Play();
 				if (goodTiming)
 				{
 					GD.Print("Good timing ! player letter : " + player.GetLetter().ToUpper() + "vs input = " + inputLetters[i]);
@@ -69,6 +75,7 @@ public partial class CoupleManager : Node
 					{
 						// TODO : green feedback
 						player.StartPlayStep();
+						player.GetNode<CoupleAnimator>("PathFollow3D").Spin();
 					}
 					else
 					{
@@ -120,8 +127,11 @@ public partial class CoupleManager : Node
 	{
 		foreach (Couple who in coupleList)
 		{
-			if(who != player)
+			if (who != player)
+			{
 				who.StartPlayStep();
+				who.GetNode<CoupleAnimator>("PathFollow3D").Spin();
+			}
 		}
 	}
 

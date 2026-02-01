@@ -55,7 +55,7 @@ public partial class CoupleAnimator : PathFollow3D
 		rotationOffset += 1.0f;
 	}
 
-	private void Spin()
+	public void Spin()
 	{
 		if (spinning)
 			return;

@@ -8,8 +8,9 @@ public partial class improMod : Node
     int playersNumber = 10;
     [Export] AudioStream[] notes1;
     [Export] AudioStream[] notes2;
-    float tolerance = 0.2f;
-    Instrumental currentOST;
+    public float tolerance = 0.4f;
+    public Instrumental currentOST;
+    public float signature;
 
     float latestNote;
     bool probablyPlaying;
@@ -19,6 +20,7 @@ public partial class improMod : Node
         currentOST = new Instrumental();
         currentOST = musicPlayer.Instance.GetCurrentInstrumental();
         GD.Print(currentOST.music.GetLength());
+        signature = currentOST.binaire ? 2 : 3;
     }
     public override void _Process(double delta)
     {
@@ -42,10 +44,11 @@ public partial class improMod : Node
     {
         return PlayNote(currentOST);
     }
+
     bool PlayNote(Instrumental OST)
     {
         float time = (float)musicPlayer.Instance.player.GetPlaybackPosition();
-        float signature = OST.binaire ? 2 : 3;
+        signature = OST.binaire ? 2 : 3;
         float timing = signature*60 / OST.BPM;
         GD.Print(time % timing<tolerance);
 
@@ -56,6 +59,8 @@ public partial class improMod : Node
         int currentChordSection = Mathf.FloorToInt(time / chordUnit) % 8; //le 8 est une constante qui devrait pas exister mais game jam
 
         //Actually playing note
+
+        float fix = musicPlayer.Instance.music_played == 1 ? 1 : 2;
         for (int i = 0; i < playersNumber; i++)
         {
             if (players[i].Playing)
@@ -65,12 +70,17 @@ public partial class improMod : Node
             else
             {
                 GD.Print(currentChordSection);
-                players[i].Stream = notes2[currentChordSection];
-                players[i].Play();
+
+                if (musicPlayer.Instance.player.Stream == musicPlayer.Instance.music1)
+                {
+                    players[i].Stream = notes1[currentChordSection];
+                }
+                else { players[i].Stream = notes2[currentChordSection]; }
+                if (((time - tempsPourUnBattement * fix) % (chordUnit) < tolerance)) players[i].Play();
                 break;
             }
         }
-        return (time % timing < tolerance);
+        return ((time - tempsPourUnBattement* fix) % (chordUnit) < tolerance);
     }
 
 }
