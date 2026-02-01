@@ -24,7 +24,6 @@
 
 [node name="AudioPlayer" type="Node2D" parent="." unique_id=476682901]
 script = ExtResource("1_h2yge")
-music_played = 0
 music1 = ExtResource("2_yfy4x")
 music2 = ExtResource("3_pyfq1")
 
