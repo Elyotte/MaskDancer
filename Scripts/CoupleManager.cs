@@ -34,6 +34,23 @@ public partial class CoupleManager : Node
 		nbInputs = Mathf.Min(maxNbClosestCouples, inputLetters.Count);
     }
 
+	int NumberOfLetter(string letter)
+	{
+		switch (letter)
+		{
+		case "H":
+			return 0;
+		case "J":
+			return 1;
+		case "K":
+			return 2;
+		case "L":
+			return 3;
+		default:
+			return -1;
+		}
+	}
+
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
@@ -42,12 +59,13 @@ public partial class CoupleManager : Node
 		List<Couple> closest = ClosestCouples(player, nbInputs);
 		for (int i = 0; i < nbInputs; i++)
 		{
-			if (Input.IsActionJustPressed("dance" + i))
+			if (Input.IsActionJustPressed("dance" + NumberOfLetter(inputLetters[i])))
 			{
 				bool goodTiming = true;
 				if (goodTiming)
 				{
-					if (inputLetters[i] == player.GetLetter())
+					GD.Print("Good timing ! player letter : " + player.GetLetter().ToUpper() + "vs input = " + inputLetters[i]);
+					if (inputLetters[i] == player.GetLetter().ToUpper())
 					{
 						// TODO : green feedback
 						player.StartPlayStep();
@@ -76,9 +94,9 @@ public partial class CoupleManager : Node
 	// flemme de chercher List::Shuffle() je vais juste le recoder
 	List<string> Shuffle(List<string> l)
 	{
-		for (int i = inputLetters.Count - 1; i > 0; i--)
+		for (int i = l.Count - 1; i > 0; i--)
 		{
-			int j = (int)GD.Randi() % (i + 1);
+			int j = (int)(GD.Randi() % (i + 1));
 			string tmp = l[i];
 			l[i] = l[j];
 			l[j] = tmp;
@@ -102,7 +120,8 @@ public partial class CoupleManager : Node
 	{
 		foreach (Couple who in coupleList)
 		{
-			who.StartPlayStep();
+			if(who != player)
+				who.StartPlayStep();
 		}
 	}
 

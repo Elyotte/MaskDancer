@@ -5,15 +5,17 @@
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_r150o"]
 
-[node name="Main" type="Node3D" unique_id=1409599210]
+[node name="Main" type="Node3D" unique_id=1409599210 node_paths=PackedStringArray("player")]
 script = ExtResource("1_idj7w")
+player = NodePath("Player")
+maxNbClosestCouples = 3
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=108344366]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 3.6791816, 3)
 projection = 1
-size = 2.869
+size = 4.1
 
-[node name="Path3D" parent="." unique_id=110960892 instance=ExtResource("2_idj7w")]
+[node name="Player" parent="." unique_id=110960892 instance=ExtResource("2_idj7w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2996788, 0, 0.86633396)
 
 [node name="Path3D2" parent="." unique_id=859815911 instance=ExtResource("2_idj7w")]

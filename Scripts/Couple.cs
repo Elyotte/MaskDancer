@@ -45,7 +45,7 @@ public partial class Couple : Path3D
 
 	private void SetTimingProgression(float t)
     {
-        var shaderMaterial = (ShaderMaterial)GetNode<Sprite3D>("Sprite3D").MaterialOverride;
+        var shaderMaterial = (ShaderMaterial)GetNode<Sprite3D>("PathFollow3D/Sprite3D").MaterialOverride;
         shaderMaterial.SetShaderParameter("t", t);
     }
 
@@ -106,10 +106,10 @@ public partial class Couple : Path3D
 		}
 	}
 
-    public void SwapWith(Couple other)
-    {
-        GD.Print("swap !");
-    }
+	public void SwapWith(Couple other)
+	{
+		GD.Print("swap !");
+	}
 
 	public override void _ExitTree()
     {

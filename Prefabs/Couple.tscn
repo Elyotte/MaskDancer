@@ -15,6 +15,7 @@ _data = {
 point_count = 4
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jtsmt"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_m1br7")
 shader_parameter/t = 0.0
@@ -23,7 +24,7 @@ shader_parameter/t = 0.0
 curve = SubResource("Curve3D_hcljg")
 script = ExtResource("1_swnvi")
 anchor = NodePath("PathFollow3D")
-textLabel = NodePath("Label3D")
+textLabel = NodePath("PathFollow3D/Label3D")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="." unique_id=2142276862 node_paths=PackedStringArray("dancer1", "dancer2", "endRotationTimer")]
 transform = Transform3D(0.999991, 0, 0, 0, 0.99999994, 0, 0, 0, 0.999991, 0.54350793, 0, -0.6915677)
@@ -41,21 +42,21 @@ transform = Transform3D(1.0000001, 0, 0, 0, 0.8660254, 0.50000006, 0, -0.5, 0.86
 [node name="Dancer2" parent="PathFollow3D" unique_id=166886143 instance=ExtResource("2_8g8pn")]
 transform = Transform3D(1.0000002, 0, 0, 0, 0.8660255, 0.50000006, 0, -0.5, 0.8660257, 0, 0, 0)
 
-[node name="EndSpin" type="Timer" parent="." unique_id=289709249]
-one_shot = true
-
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=837030618]
-transform = Transform3D(1, 0, 0, 0, 0.86659205, 0.49901724, 0, -0.49901724, 0.86659205, 0.52541995, 0.643027, -1.5839987)
+[node name="Sprite3D" type="Sprite3D" parent="PathFollow3D" unique_id=837030618]
+transform = Transform3D(1.0000091, 0, 0, 0, 0.86659217, 0.4990173, 0, -0.49902177, 0.8665999, -0.018088162, 0.64302707, -0.892439)
 material_override = SubResource("ShaderMaterial_jtsmt")
 texture = ExtResource("4_c50qg")
 
-[node name="Label3D" type="Label3D" parent="." unique_id=980395443]
-transform = Transform3D(1, 0, 0, 0, 0.8709052, 0.49145103, 0, -0.49145103, 0.8709052, 0.53931653, 0.67999107, -1.5729754)
+[node name="Label3D" type="Label3D" parent="PathFollow3D" unique_id=980395443]
+transform = Transform3D(1.0000091, 0, 0, 0, 0.87090534, 0.49145108, 0, -0.49145547, 0.8709131, -0.004191458, 0.6799911, -0.8814157)
 render_priority = 2
 outline_render_priority = 1
 modulate = Color(1, 1, 1, 0)
 outline_modulate = Color(0, 0, 0, 0)
 text = "W"
+
+[node name="EndSpin" type="Timer" parent="." unique_id=289709249]
+one_shot = true
 
 [node name="LabelDisappear" type="Timer" parent="." unique_id=1993716103]
 one_shot = true
