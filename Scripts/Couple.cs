@@ -31,13 +31,14 @@ public partial class Couple : Path3D
 		base._Ready();
 		action = ListenInput;
 		GetNode<Timer>("LabelDisappear").WaitTime = 0.85f * rythm;
-
 	}
 
 	public override void _Process(double delta)
 	{
 		action?.Invoke(delta);
-	}
+
+        rythm = musicPlayer.Instance.music_played == 1 ? 1.4f : 0.7f;
+    }
 
     public string GetLetter()
     {

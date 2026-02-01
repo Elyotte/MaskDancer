@@ -24,7 +24,7 @@ shader_parameter/t = 0.0
 curve = SubResource("Curve3D_hcljg")
 script = ExtResource("1_swnvi")
 anchor = NodePath("PathFollow3D")
-rythm = 0.7
+rythm = 1.4
 textLabel = NodePath("PathFollow3D/Label3D")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="." unique_id=2142276862 node_paths=PackedStringArray("dancer1", "dancer2", "endRotationTimer")]

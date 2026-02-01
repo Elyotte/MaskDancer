@@ -61,7 +61,7 @@ public partial class improMod : Node
 
         //Actually playing note
 
-        float fix = musicPlayer.Instance.music_played == 1 ? 1 : 2;
+        float fix = musicPlayer.Instance.music_played == 1 ? 1 : 0;
         for (int i = 0; i < playersNumber; i++)
         {
             if (players[i].Playing)
@@ -82,6 +82,7 @@ public partial class improMod : Node
                 break;
             }
         }
+        tolerance = musicPlayer.Instance.music_played == 1 ? tolerance : tolerance * 1.5f;
         return ((time - tempsPourUnBattement* fix) % (chordUnit) < tolerance);
     }
 
