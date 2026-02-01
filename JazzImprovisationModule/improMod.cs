@@ -8,6 +8,7 @@ public partial class improMod : Node
     int playersNumber = 10;
     [Export] AudioStream[] notes1;
     [Export] AudioStream[] notes2;
+    [Export] AudioStream wrong;
     public float tolerance = 0.4f;
     public Instrumental currentOST;
     public float signature;
@@ -76,7 +77,8 @@ public partial class improMod : Node
                     players[i].Stream = notes1[currentChordSection];
                 }
                 else { players[i].Stream = notes2[currentChordSection]; }
-                if (((time - tempsPourUnBattement * fix) % (chordUnit) < tolerance)) players[i].Play();
+                if (!((time - tempsPourUnBattement * fix) % (chordUnit) < tolerance)){ players[i].Stream = wrong;  }
+                players[i].Play();
                 break;
             }
         }

@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://gs4trmbm4e8a" path="res://JazzImprovisationModule/notes/teto6.mp3" id="16_mdwej"]
 [ext_resource type="AudioStream" uid="uid://3o5v40pw5f78" path="res://JazzImprovisationModule/notes/teto7.mp3" id="17_jhfom"]
 [ext_resource type="AudioStream" uid="uid://b620uiojx0qmh" path="res://JazzImprovisationModule/notes/teto8.mp3" id="18_t7ome"]
+[ext_resource type="AudioStream" uid="uid://q4jdik2vr1ty" path="res://JazzImprovisationModule/wrong.mp3" id="19_hp1ng"]
 
 [node name="Node" type="Node2D" unique_id=851328771]
 
@@ -30,3 +31,4 @@ music2 = ExtResource("3_pyfq1")
 script = ExtResource("1_ig7tw")
 notes1 = Array[AudioStream]([ExtResource("5_lmlqc"), ExtResource("6_hp1ng"), ExtResource("7_mx7v0"), ExtResource("8_j3673"), ExtResource("5_lmlqc"), ExtResource("6_hp1ng"), ExtResource("9_4iwwv"), ExtResource("10_pgj5b")])
 notes2 = Array[AudioStream]([ExtResource("11_4oora"), ExtResource("12_id71k"), ExtResource("13_m4lbx"), ExtResource("14_upqcx"), ExtResource("15_01eo0"), ExtResource("16_mdwej"), ExtResource("17_jhfom"), ExtResource("18_t7ome")])
+wrong = ExtResource("19_hp1ng")
