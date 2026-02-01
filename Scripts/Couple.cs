@@ -3,7 +3,7 @@ using System;
 
 public partial class Couple : Path3D
 {
-	[Export] PathFollow3D anchor;
+	[Export] public CoupleAnimator anchor;
 	[Export] float rythm = 1.2f;
 	[Export] Label3D textLabel;
 	[Export] float moveSpeed = .3f;
@@ -22,6 +22,7 @@ public partial class Couple : Path3D
 	float startProgress;
 	float endProgress;
 	float rotationOffset = 0.35f;
+
 	
 	
 	public override void _Ready()
@@ -109,6 +110,10 @@ public partial class Couple : Path3D
 	public void SwapWith(Couple other)
 	{
 		GD.Print("swap !");
+
+		CoupleManager.Swap(anchor.dancer1.dancer, other.anchor.dancer1.dancer);
+
+
 	}
 
 	public override void _ExitTree()

@@ -13,4 +13,9 @@ public partial class Dancer : AnimatedSprite3D
         backwards = newVal;
         UpdateAnim();
     }
+
+    public void Swap(DancerAnchor anchor)
+    {
+
+    }
 }

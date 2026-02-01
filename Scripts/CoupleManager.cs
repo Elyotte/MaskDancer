@@ -34,6 +34,8 @@ public partial class CoupleManager : Node
 		nbInputs = Mathf.Min(maxNbClosestCouples, inputLetters.Count);
     }
 
+
+
 	int NumberOfLetter(string letter)
 	{
 		switch (letter)
@@ -152,6 +154,18 @@ public partial class CoupleManager : Node
 	public static void RemoveCouple(Couple couple)
 	{
 		GetInstance().coupleList.Remove(couple);
+	}
+
+	public static void Swap(Dancer dancerA, Dancer dancerB)
+	{
+		DancerAnchor anchorA= dancerA.GetParent() as DancerAnchor;
+		DancerAnchor anchorB= dancerB.GetParent() as DancerAnchor;
+
+		dancerA.Reparent(anchorB);
+		dancerA.Position = new Vector3();
+		dancerB.Reparent(anchorA);
+		dancerB.Position = new Vector3();
+
 	}
 
     public override void _ExitTree()
