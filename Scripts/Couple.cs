@@ -4,7 +4,7 @@ using System;
 public partial class Couple : Path3D
 {
 	[Export] public CoupleAnimator anchor;
-	[Export] float rythm = 1.2f;
+	[Export] float rythm = 1.2f; //1.4f pour musique 1 et environ 0.7f pour musique 2
 	[Export] Label3D textLabel;
 	[Export] float moveSpeed = .3f;
 

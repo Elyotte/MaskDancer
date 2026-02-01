@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cpg1j2wl0a1as" path="res://Scripts/Couple.cs" id="1_swnvi"]
 [ext_resource type="Script" uid="uid://v30ctkd5vy2p" path="res://Scripts/CoupleAnimator.cs" id="2_3kus2"]
-[ext_resource type="PackedScene" uid="uid://ks7f5obcyide" path="res://Prefabs/Dancer.tscn" id="2_8g8pn"]
+[ext_resource type="PackedScene" uid="uid://c581tee85urtb" path="res://Prefabs/Dancer.tscn" id="2_8g8pn"]
 [ext_resource type="Texture2D" uid="uid://dw1fubvv43bkf" path="res://icon.svg" id="4_c50qg"]
 [ext_resource type="Shader" uid="uid://c0yc487ef25vm" path="res://Assets/Button.gdshader" id="4_m1br7"]
 
@@ -24,7 +24,7 @@ shader_parameter/t = 0.0
 curve = SubResource("Curve3D_hcljg")
 script = ExtResource("1_swnvi")
 anchor = NodePath("PathFollow3D")
-rythm = 1.4
+rythm = 0.7
 textLabel = NodePath("PathFollow3D/Label3D")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="." unique_id=2142276862 node_paths=PackedStringArray("dancer1", "dancer2", "endRotationTimer")]

@@ -33,7 +33,8 @@ public partial class CoupleManager : Node
 		inputLetters = new List<string> { "H", "J", "K", "L" };
 		nbInputs = Mathf.Min(maxNbClosestCouples, inputLetters.Count);
 		improMod teddyMonGoat = GetNode<improMod>("Jazz/ImproModule");
-		float tpub = 60 / teddyMonGoat.currentOST.BPM * teddyMonGoat.signature;
+		float fix = (musicPlayer.Instance.music_played == 1) ? 1 : 2;
+		float tpub = 60 / teddyMonGoat.currentOST.BPM * teddyMonGoat.signature *fix;
 		GD.Print("tpub = ", tpub);
 		GetNode<Timer>("Beat").WaitTime = tpub;
 		GetNode<Timer>("OffBeat").WaitTime = tpub;
