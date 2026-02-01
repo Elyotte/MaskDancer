@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cpg1j2wl0a1as" path="res://Scripts/Couple.cs" id="1_swnvi"]
 [ext_resource type="Script" uid="uid://v30ctkd5vy2p" path="res://Scripts/CoupleAnimator.cs" id="2_3kus2"]
-[ext_resource type="PackedScene" uid="uid://ks7f5obcyide" path="res://Prefabs/Dancer.tscn" id="2_8g8pn"]
+[ext_resource type="PackedScene" uid="uid://c581tee85urtb" path="res://Prefabs/Dancer.tscn" id="2_8g8pn"]
 [ext_resource type="Texture2D" uid="uid://dw1fubvv43bkf" path="res://icon.svg" id="4_c50qg"]
 [ext_resource type="Shader" uid="uid://c0yc487ef25vm" path="res://Assets/Button.gdshader" id="4_m1br7"]
+[ext_resource type="Script" uid="uid://cdwwtqnj4ph0n" path="res://Scripts/BringMeToLife.cs" id="6_jtsmt"]
 
 [sub_resource type="Curve3D" id="Curve3D_hcljg"]
 closed = true
@@ -61,6 +62,12 @@ one_shot = true
 
 [node name="LabelDisappear" type="Timer" parent="." unique_id=1993716103]
 one_shot = true
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=2043265882 node_paths=PackedStringArray("feur")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 1.2929184, 0)
+texture = ExtResource("4_c50qg")
+script = ExtResource("6_jtsmt")
+feur = NodePath("..")
 
 [connection signal="timeout" from="EndSpin" to="PathFollow3D" method="EndRotation"]
 [connection signal="timeout" from="LabelDisappear" to="." method="MakeLabelDisappear"]

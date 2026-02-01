@@ -1,11 +1,13 @@
-using Godot;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using Godot;
+using static Godot.Control;
 
 public partial class CoupleManager : Node
 {
-	[Export] private Couple player;
+	[Export] public Couple player;
 	[Export] private int maxNbClosestCouples;
 
 	private List<string> inputLetters = null;
@@ -88,6 +90,8 @@ public partial class CoupleManager : Node
 							{
 								// TODO : green feedback
 								player.SwapWith(closest[j]);
+								player = closest[j];
+								break;
 							}
 						}
 					}
@@ -116,23 +120,31 @@ public partial class CoupleManager : Node
 	public void OnOffBeat()
 	{
 		List<Couple> closest = ClosestCouples(player, nbInputs);
+		GD.Print("nb closest =", closest.Count);
 		inputLetters = Shuffle(inputLetters);
 
 		player.Appear(inputLetters[0]);
-		for (int i = 1; i < Math.Min(closest.Count, nbInputs); i++)
+		for (int i = 0; i < Math.Min(closest.Count, nbInputs); i++)
 		{
-			closest[i].Appear(inputLetters[i]);
+			closest[i].Appear(inputLetters[i + 1]);
 		}
 	}
 
 	public void OnBeat()
 	{
-		foreach (Couple who in coupleList)
+        List<Couple> closest = ClosestCouples(player, nbInputs);
+        foreach (Couple who in coupleList)
 		{
 			if (who != player)
 			{
 				who.StartPlayStep();
-				who.GetNode<CoupleAnimator>("PathFollow3D").Spin();
+				bool found = false;
+				foreach(Couple who2 in closest)
+				{
+					if (who == who2) found = true;
+
+				}
+				if(!found) who.GetNode<CoupleAnimator>("PathFollow3D").Spin();
 			}
 		}
 	}
@@ -145,7 +157,7 @@ public partial class CoupleManager : Node
 
 	public List<Couple> ClosestCouples(Couple fromWho, int max = 4)
 	{
-		const float radius = 1.0f;
+		const float radius = 2.5f;
 		List<Couple> ans = new List<Couple>();
 		foreach (Couple who in coupleList)
 		{
@@ -171,12 +183,31 @@ public partial class CoupleManager : Node
 		DancerAnchor anchorA= dancerA.GetParent() as DancerAnchor;
 		DancerAnchor anchorB= dancerB.GetParent() as DancerAnchor;
 
-		dancerA.Reparent(anchorB);
-		dancerA.Position = new Vector3();
-		dancerB.Reparent(anchorA);
-		dancerB.Position = new Vector3();
+		//CoupleAnimator anchorParentA = anchorA.GetParent() as CoupleAnimator;
+		//CoupleAnimator anchorParentB = anchorB.GetParent() as CoupleAnimator;
 
+
+		Vector3 offset = new Vector3(0, 0.337f, 0);
+
+		Tween tween = GetInstance().CreateTween();
+		tween.TweenProperty(dancerA, "global_position", anchorB.GlobalPosition + offset, 0.3f);
+		tween.Parallel();
+		tween.TweenProperty(dancerB, "global_position", anchorA.GlobalPosition + offset, 0.3f);
+
+        tween.TweenCallback(new Callable(GetInstance(), nameof(WithThisTreasureISummon)));
+
+
+
+         void WithThisTreasureISummon()
+		{
+			dancerA.Reparent(anchorB);
+			dancerA.Position = offset;
+			dancerB.Reparent(anchorA);
+			dancerB.Position = offset;	
+		}
 	}
+
+	
 
     public override void _ExitTree()
     {

@@ -14,8 +14,4 @@ public partial class Dancer : AnimatedSprite3D
         UpdateAnim();
     }
 
-    public void Swap(DancerAnchor anchor)
-    {
-
-    }
 }

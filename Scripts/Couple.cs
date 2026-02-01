@@ -29,7 +29,6 @@ public partial class Couple : Path3D
 	{
 		CoupleManager.AddCouple(this);
 		base._Ready();
-		action = ListenInput;
 		GetNode<Timer>("LabelDisappear").WaitTime = 0.85f * rythm;
 
 	}
@@ -69,18 +68,6 @@ public partial class Couple : Path3D
 		GetTree().CreateTween().TweenProperty(textLabel, "outline_modulate:a", 0.0f, 0.15f * rythm);
 	}
 
-	void SetListenInput()
-    { 
-		action = ListenInput; 
-	}
-    void ListenInput(double delta)
-    {
-        // non dcp
-		// if (Input.IsActionJustPressed("spin"))
-        // {
-        // 	StartPlayStep();
-        // }
-    }
 
 	public void StartPlayStep()
 	{
@@ -88,11 +75,7 @@ public partial class Couple : Path3D
 
 		startProgress = anchor.Progress;
 		endProgress = startProgress + distanceEachStepInMeter;
-		
-		currentTween = GetTree().CreateTween();
-		currentTween.TweenProperty(anchor, "progress", endProgress, stepDuration);
-
-		currentTween.Finished += SetListenInput;
+		action = PlayStep;
 	}
 	void PlayStep(double delta)
 	{
@@ -103,7 +86,7 @@ public partial class Couple : Path3D
 		{
 			anchor.Progress = endProgress;
 			elapsed = 0;
-			SetListenInput();
+			action = null;
 		}
 	}
 
@@ -111,9 +94,13 @@ public partial class Couple : Path3D
 	{
 		GD.Print("swap !");
 
+		Dancer me = anchor.dancer1.dancer;
+		Dancer him = other.anchor.dancer1.dancer;
+
 		CoupleManager.Swap(anchor.dancer1.dancer, other.anchor.dancer1.dancer);
 
-
+		other.anchor.dancer1.dancer = me;
+		anchor.dancer1.dancer = him;
 	}
 
 	public override void _ExitTree()
